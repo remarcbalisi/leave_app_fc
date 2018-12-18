@@ -33,6 +33,6 @@ class User extends Authenticatable
     ];
 
     public function gender(){
-        $this->belongsTo('App\Gender', 'gender_id');
+        return $this->belongsTo('App\Gender', 'gender_id');
     }
 }

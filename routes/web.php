@@ -10,7 +10,14 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+// use App\User;
 
 Route::get('/', function () {
+    
+    // return User::where(['id'=>1])->first()->gender->name;
     return view('welcome');
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
