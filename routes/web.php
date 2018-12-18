@@ -11,9 +11,11 @@
 |
 */
 // use App\User;
+// use Vinkla\Hashids\Facades\Hashids;
 
 Route::get('/', function () {
-    
+    // return Hashids::encode(132323);
+    // return Hashids::decode('9Pn88')[0];
     // return User::where(['id'=>1])->first()->gender->name;
     return view('welcome');
 });
