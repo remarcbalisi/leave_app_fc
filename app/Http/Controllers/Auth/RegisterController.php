@@ -8,6 +8,12 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
+use App\Gender;
+use App\ContactType;
+use App\AddressType;
+use App\Role;
+use App\Department;
+
 class RegisterController extends Controller
 {
     /*
@@ -49,7 +55,13 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
+            'fname' => ['required', 'string', 'max:45'],
+            'mname' => ['required', 'string', 'max:45'],
+            'lname' => ['required', 'string', 'max:45'],
+            'b_day' => ['required'],
+            'date_hired' => ['required'],
+            'employee_id' => ['required', 'string', 'max:45'],
+            'username' => ['required', 'string', 'max:45', 'unique:users'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:6', 'confirmed'],
         ]);
@@ -63,10 +75,30 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        $check_user = User::where([
+            'fname' => $data['fname'],
+            'mname' => $data['mname'],
+            'lname' => $data['lname'],
+        ]);
+
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+        ]);
+    }
+
+    /**
+     * this will overried the viewing of registration form
+     */
+    public function showRegistrationForm()
+    {
+        return view("auth.register")->with([
+            'gender' => Gender::get(),
+            'contact_types' => ContactType::get(),
+            'address_types' => AddressType::get(),
+            'roles' => Role::get(),
+            'departments' => Department::get()
         ]);
     }
 }
