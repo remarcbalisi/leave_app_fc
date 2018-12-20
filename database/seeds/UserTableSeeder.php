@@ -21,7 +21,6 @@ class UserTableSeeder extends Seeder
             'date_hired' => date("Y-m-d"),
             'employee_id' => '123-remarc',
             'department_id' => 1,
-            'status' => 1,
             'username' => 'remarcbalisi',
             'password' => bcrypt('admin'),
         ]);
@@ -36,7 +35,6 @@ class UserTableSeeder extends Seeder
             'date_hired' => date("Y-m-d"),
             'employee_id' => '123-julven',
             'department_id' => 1,
-            'status' => 1,
             'username' => 'julvencondor',
             'password' => bcrypt('admin'),
         ]);
