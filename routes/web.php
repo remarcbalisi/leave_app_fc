@@ -10,13 +10,21 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-// use App\User;
+use App\User;
 // use Vinkla\Hashids\Facades\Hashids;
 
 Route::get('/', function () {
     // return Hashids::encode(132323);
     // return Hashids::decode('9Pn88')[0];
     // return User::where(['id'=>1])->first()->gender->name;
+            // return User::where([
+
+            // 'id'=>Auth::user()->id
+
+            // ])->first()->user_status()->where(
+            //     [
+            //         'id'=>1
+            //     ])->first();
     return view('welcome');
 });
 

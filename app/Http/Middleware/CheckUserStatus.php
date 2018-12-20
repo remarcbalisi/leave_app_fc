@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Auth;
+use App\User;
 
 class CheckUserStatus
 {
@@ -15,11 +16,19 @@ class CheckUserStatus
      * @return mixed
      */
     public function handle($request, Closure $next)
-    {
-        if( Auth::user()->status == 0  ){
-            Auth::logout();
-            return redirect('login');
+    {   
+        /**
+         * active - 1
+         * inactive - 2
+         * suspended - 3
+         */
+
+        if( User::where(['id'=>Auth::user()->id])->first()->user_status()->where(['id'=>1])->first()->status_id == 1  ){
+            return $next($request);
         }
-        return $next($request);
+
+        Auth::logout();
+        return redirect('login');
+        
     }
 }
