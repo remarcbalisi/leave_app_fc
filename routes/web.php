@@ -25,4 +25,5 @@ Auth::routes();
 //the are the url's that needs auth and user stat of 1
 Route::middleware('auth', 'user_stat')->group(function () {
     Route::get('/home', 'HomeController@index')->name('home');
+    Route::get('apply-leave', 'LeaveController@create')->name('apply-leave');
 });

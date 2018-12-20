@@ -18,7 +18,7 @@ class CheckUserStatus
     {
         if( Auth::user()->status == 0  ){
             Auth::logout();
-            return redirect('login');
+            return redirect('login')->withErrors(['errors'=>'This Account is not yet Activated by the admin']);
         }
         return $next($request);
     }
